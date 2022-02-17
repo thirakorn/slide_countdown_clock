@@ -248,48 +248,59 @@ class SlideCountdownClockState extends State<SlideCountdownClock> {
     DateTime startTime,
     String id,
   ) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              decoration: widget.decoration,
-              padding: widget.tightLabel
-                  ? EdgeInsets.zero
-                  : const EdgeInsets.only(left: 3),
-              child: Digit<int?>(
-                padding: widget.padding,
-                itemStream:
-                    timeStream.map<int>(tensDigit as int Function(DateTime)),
-                initValue: tensDigit(startTime),
-                id: id,
-                decoration: widget.decoration,
-                slideDirection: widget.slideDirection,
-                textStyle: widget.textStyle,
+    return Container(
+      decoration: widget.decoration,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      shape: BoxShape.rectangle),
+                padding: widget.tightLabel
+                    ? EdgeInsets.zero
+                    : const EdgeInsets.only(left: 3),
+                child: Digit<int?>(
+                  padding: widget.padding,
+                  itemStream:
+                      timeStream.map<int>(tensDigit as int Function(DateTime)),
+                  initValue: tensDigit(startTime),
+                  id: id,
+                  decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      shape: BoxShape.rectangle),
+                  slideDirection: widget.slideDirection,
+                  textStyle: widget.textStyle,
+                ),
               ),
-            ),
-            Container(
-              decoration: widget.decoration,
-              padding: widget.tightLabel
-                  ? EdgeInsets.zero
-                  : const EdgeInsets.only(right: 3),
-              child: Digit<int?>(
-                padding: widget.padding,
-                itemStream:
-                    timeStream.map<int>(onesDigit as int Function(DateTime)),
-                initValue: onesDigit(startTime),
-                decoration: widget.decoration,
-                slideDirection: widget.slideDirection,
-                textStyle: widget.textStyle,
-                id: id,
+              Container(
+                decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      shape: BoxShape.rectangle),
+                padding: widget.tightLabel
+                    ? EdgeInsets.zero
+                    : const EdgeInsets.only(right: 3),
+                child: Digit<int?>(
+                  padding: widget.padding,
+                  itemStream:
+                      timeStream.map<int>(onesDigit as int Function(DateTime)),
+                  initValue: onesDigit(startTime),
+                  decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      shape: BoxShape.rectangle),
+                  slideDirection: widget.slideDirection,
+                  textStyle: widget.textStyle,
+                  id: id,
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

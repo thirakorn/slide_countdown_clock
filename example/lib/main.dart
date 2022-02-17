@@ -90,8 +90,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.blue,
                 ),
                 padding: EdgeInsets.all(10),
-                decoration:
-                    BoxDecoration(color: Colors.blue, shape: BoxShape.circle),
+                decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(5),
+                    shape: BoxShape.rectangle),
                 onDone: () {
                   scaffoldMessengerKey.currentState.showSnackBar(
                       SnackBar(content: Text('Clock 1 finished')));
