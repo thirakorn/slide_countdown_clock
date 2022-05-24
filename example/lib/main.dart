@@ -28,7 +28,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
       GlobalKey<ScaffoldMessengerState>();
-  Duration _duration = Duration(seconds: 1000000);
+  Duration _duration = Duration(seconds: 172800);
 
   @override
   Widget build(BuildContext context) {
@@ -73,30 +73,33 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             _buildSpace(),
             Text('Use box Decoration'),
-            Padding(
-              padding: EdgeInsets.all(10),
+            Container(
+              color: Colors.transparent,
+              // height: 50,
               child: SlideCountdownClock(
                 duration: _duration,
-                slideDirection: SlideDirection.up,
-                separator: "-",
+                slideDirection: SlideDirection.down,
+                separator: ":",
                 textStyle: TextStyle(
-                  fontSize: 20,
+                  fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
                 separatorTextStyle: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.blue,
+                  color: Color(0xFEDB000E),
                 ),
-                padding: EdgeInsets.all(10),
+                padding:
+                EdgeInsets.symmetric(horizontal: 0, vertical: 3),
                 decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(5),
+                    color: Color(0xFEDB000E),
+                    borderRadius: BorderRadius.circular(8),
                     shape: BoxShape.rectangle),
+                tightLabel: false,
+                shouldShowDays: true,
                 onDone: () {
-                  scaffoldMessengerKey.currentState.showSnackBar(
-                      SnackBar(content: Text('Clock 1 finished')));
+
                 },
               ),
             ),

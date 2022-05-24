@@ -118,7 +118,7 @@ class SlideCountdownClockState extends State<SlideCountdownClock> {
   @override
   Widget build(BuildContext context) {
     Widget dayDigits;
-    if (timeLeft.inDays > 99) {
+    if (timeLeft.inDays > 0) {
       final List<Function> digits = [];
       for (int i = timeLeft.inDays.toString().length - 1; i >= 0; i--) {
         digits.add((DateTime time) =>
@@ -211,7 +211,6 @@ class SlideCountdownClockState extends State<SlideCountdownClock> {
     for (int i = 0; i < timeLeftString.toString().length; i++) {
       rows.add(
         Container(
-          decoration: widget.decoration,
           padding: widget.tightLabel
               ? const EdgeInsets.only(left: 3)
               : EdgeInsets.zero,
@@ -221,7 +220,7 @@ class SlideCountdownClockState extends State<SlideCountdownClock> {
                 timeStream!.map<int>(digits[i] as int Function(DateTime)),
             initValue: digits[i](startTime) as int,
             id: id,
-            decoration: widget.decoration,
+            decoration: BoxDecoration(),
             slideDirection: widget.slideDirection,
             textStyle: widget.textStyle,
           ),
@@ -229,15 +228,20 @@ class SlideCountdownClockState extends State<SlideCountdownClock> {
       );
     }
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: rows,
-        ),
-      ],
+    rows.add(Text('D', style: widget.textStyle,));
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 3),
+      decoration: widget.decoration,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: rows,
+          ),
+        ],
+      ),
     );
   }
 
